@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 
 export default function NavigationBar() {
   const pathname = usePathname();
-  console.log(pathname);
   function isActive(href: string): boolean {
     const pathArr = pathname.split("/");
     return pathArr[1] === href.split("/")[1];
