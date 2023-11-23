@@ -1,14 +1,11 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { DocumentRenderer } from "@keystatic/core/renderer";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/../keystatic.config";
-import { notFound } from "next/navigation";
-import { Post } from "@/lib/types";
+import { Post as PostType } from "@/lib/types";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
-export function Post({ post }: { post: Post }) {
+export function Post({ post }: { post: PostType }) {
   return (
     <div className="mt-4 flex flex-col lg:flex-row gap-3 lg:gap-0 lg:justify-between border p-3 shadow-sm rounded-md lg:items-center">
       <div>

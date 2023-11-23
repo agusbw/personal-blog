@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import siteConfig from "@/lib/site-config";
 import { buttonVariants } from "@/components/ui/button";
@@ -17,11 +17,10 @@ export default function Greetings() {
       </div>
       <p>
         Di tempat ini aku menuangkan pikiran-pikiran aneh yang datangnya juga
-        secara random. Aku bukan penulis, jadi ya alakadarnya. Selamat datang
-        dan selamat membaca!💜
+        secara random. Bukan penulis, jadi ya alakadarnya. Selamat datang dan
+        selamat membaca!💜
       </p>
       <div>
-        <p className="mb-1">Kalau mau yang lebih serius:</p>
         <Link
           href={siteConfig.personalWebsite}
           className={buttonVariants({

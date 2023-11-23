@@ -3,7 +3,6 @@ import keystaticConfig from "@/../keystatic.config";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { Post as PostType } from "@/lib/types";
-import Link from "next/link";
 import { Post } from "@/components/posts-list";
 
 type Props = {

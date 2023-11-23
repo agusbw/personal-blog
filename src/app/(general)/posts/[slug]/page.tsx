@@ -4,7 +4,6 @@ import keystaticConfig from "@/../keystatic.config";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { PostEntry } from "@/lib/types";
 import { Metadata } from "next";
 
 const reader = createReader(process.cwd(), keystaticConfig);
