@@ -1,11 +1,16 @@
-export interface Post {
+import { DocumentElement } from "@keystatic/core";
+
+export type PostEntry = {
+  title: string;
+  tags: readonly string[];
+  content: () => Promise<DocumentElement[]>;
+  draft: boolean;
+  place: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Post = {
   slug: string;
-  entry: {
-    title: string;
-    tags: readonly string[];
-    content: () => Promise<DocumentElement[]>;
-    draft: boolean;
-    createdAt: string | null;
-    updatedAt: string | null;
-  };
-}
+  entry: PostEntry;
+};

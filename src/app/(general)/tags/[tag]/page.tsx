@@ -22,13 +22,15 @@ export default async function TagsPage({ params }: Props) {
     (post) => !post.entry.draft && post.entry.tags.includes(params.tag)
   );
 
-  const tags = posts.flatMap((post) => post.entry.tags);
-
-  if (!tags.includes(params.tag)) {
+  if (!posts) {
     notFound();
   }
 
-  if (!posts) {
+  const tags = posts.flatMap((post) =>
+    post.entry.tags ? post.entry.tags : []
+  );
+
+  if (!tags.includes(params.tag)) {
     notFound();
   }
 

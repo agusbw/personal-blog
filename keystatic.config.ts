@@ -3,7 +3,11 @@ import { config, fields, collection } from "@keystatic/core";
 
 export default config({
   storage: {
-    kind: "local",
+    kind: "github",
+    repo: {
+      name: "blog.agusbw.live",
+      owner: "agusbw",
+    },
   },
   collections: {
     posts: collection({
@@ -43,14 +47,25 @@ export default config({
         place: fields.text({
           label: "Place",
           description: "The place where the post was created",
+          validation: {
+            length: {
+              min: 1,
+            },
+          },
         }),
         createdAt: fields.datetime({
           label: "Created Date",
           description: "The date and time of post creation",
+          validation: {
+            isRequired: true,
+          },
         }),
         updatedAt: fields.datetime({
           label: "Updated Date",
           description: "The date and time of post been updated",
+          validation: {
+            isRequired: true,
+          },
         }),
       },
     }),

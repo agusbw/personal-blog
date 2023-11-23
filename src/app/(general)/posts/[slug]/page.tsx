@@ -4,6 +4,8 @@ import keystaticConfig from "@/../keystatic.config";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { PostEntry } from "@/lib/types";
+import { Metadata } from "next";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -14,7 +16,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await reader.collections.posts.read(params.slug);
   return {
-    title: post.title,
+    title: post?.title ? post.title : "Post",
   };
 }
 
@@ -32,7 +34,7 @@ export default async function Post({ params }: Props) {
         <p className="italic text-sm">
           {post.place +
             ", " +
-            new Date(post.createdAt).toLocaleDateString("id-ID", {
+            new Date(post.createdAt)?.toLocaleDateString("id-ID", {
               year: "numeric",
               month: "long",
               day: "numeric",

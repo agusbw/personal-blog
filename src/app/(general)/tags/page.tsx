@@ -26,7 +26,7 @@ export default async function TagsPage() {
         {tags.map((tag) => (
           <Link
             href={`/tags/${tag}`}
-            key={tags}
+            key={tag}
           >
             <Badge className="mr-2"> {tag}</Badge>
           </Link>
