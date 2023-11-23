@@ -17,9 +17,17 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 const reader = createReader(process.cwd(), keystaticConfig);
 
+export async function generateStaticParams() {
+  const posts: PostType[] = (await reader.collections.posts.all()).filter(
+    (post) => !post.entry.draft
+  );
+
+  return posts.flatMap((post) => (post.entry.tags ? post.entry.tags : []));
+}
+
 export default async function TagsPage({ params }: Props) {
   const posts: PostType[] = (await reader.collections.posts.all()).filter(
-    (post) => !post.entry.draft && post.entry.tags.includes(params.tag)
+    (post) => !post.entry.draft
   );
 
   if (!posts) {

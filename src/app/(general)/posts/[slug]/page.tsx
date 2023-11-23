@@ -20,6 +20,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export async function generateStaticParams() {
+  const posts = await reader.collections.posts.all();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export default async function Post({ params }: Props) {
   const post = await reader.collections.posts.read(params.slug);
 
