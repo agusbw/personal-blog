@@ -46,10 +46,9 @@ export default async function Post({ params }: Props) {
   }
 
   return (
-    <div className="space-y-7">
-      <div className="text-center w-full space-y-2">
+    <div>
+      <div className="text-center w-full space-y-2 mb-16">
         <h1 className="text-4xl font-semibold">{post.title}</h1>
-
         <div className="flex items-center gap-2 justify-center">
           <Avatar>
             <AvatarImage

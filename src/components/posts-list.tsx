@@ -9,7 +9,7 @@ const reader = createReader(process.cwd(), keystaticConfig);
 export function Post({ post }: { post: PostType }) {
   return (
     <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 lg:justify-between border p-3 shadow-sm rounded-md lg:items-center">
-      <div>
+      <div className="w-fit">
         <Link
           href={`/posts/${post.slug}`}
           className="hoverable-link line-clamp-1"
