@@ -12,7 +12,7 @@ export function Post({ post }: { post: PostType }) {
       <div>
         <Link
           href={`/posts/${post.slug}`}
-          className="line-clamp-1 underline underline-offset-4"
+          className="hoverable-link "
         >
           {post.entry.title}
         </Link>

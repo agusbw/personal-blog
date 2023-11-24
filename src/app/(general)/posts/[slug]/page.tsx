@@ -57,14 +57,19 @@ export default async function Post({ params }: Props) {
               src="/images/profile.webp"
             />
           </Avatar>
-          <Link href={siteConfig.socials.twitter}>Bewe</Link>
+          <Link
+            className="hoverable-link"
+            href={siteConfig.socials.twitter}
+          >
+            Bewe
+          </Link>
         </div>
         <p className="text-sm">
           {post.place + ", " + formatDate(new Date(post.createdAt))}
         </p>
       </div>
       <div className="max-w-[650px] mx-auto">
-        <article className="prose dark:prose-invert">
+        <article className="prose dark:prose-invert prose-a:hoverable-link prose-a:no-underline prose-a:font-medium">
           <DocumentRenderer document={await post.content()} />
         </article>
         <div className="space-y-5 mt-7">
@@ -83,8 +88,8 @@ export default async function Post({ params }: Props) {
             ))}
           </div>
           <Link
-            className="block underline underline-offset-4"
             href={"/"}
+            className="hoverable-link"
           >
             Kembali ke home...
           </Link>

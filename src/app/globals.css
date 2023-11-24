@@ -73,4 +73,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .hoverable-link {
+    @apply inline-block relative after:block after:absolute after:bg-purple-600/100 hover:after:bg-purple-600/40 after:w-full after:h-[2px] after:hover:h-full after:bottom-[0] after:transition-all after:duration-300 after:-z-50 leading-none;
+  }
 }
