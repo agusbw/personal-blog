@@ -69,7 +69,7 @@ export default async function Post({ params }: Props) {
         </p>
       </div>
       <div className="max-w-[650px] mx-auto">
-        <article className="prose dark:prose-invert prose-a:hoverable-link prose-a:no-underline prose-a:font-medium">
+        <article className="prose dark:prose-invert prose-attribute">
           <DocumentRenderer document={await post.content()} />
         </article>
         <div className="space-y-5 mt-7">
