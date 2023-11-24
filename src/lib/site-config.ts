@@ -1,7 +1,7 @@
 const siteConfig = {
   personalWebsite: "https://agusbw.live",
   socials: {
-    twitter: "https://twitter.com/agus_bw83",
+    twitter: "https://twitter.com/agusbw_",
     github: "https://github.com/",
     instagram: "https://www.instagram.com/agus_bw/",
   },
