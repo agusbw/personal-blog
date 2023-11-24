@@ -10,18 +10,21 @@ export default function Footer() {
         <Link
           href={siteConfig.socials.twitter}
           target="_blank"
+          aria-label="Twitter"
         >
           <Twitter className="text-blue-400" />
         </Link>
         <Link
           href={siteConfig.socials.instagram}
           target="_blank"
+          aria-label="Instagram"
         >
           <Instagram className="text-pink-500" />
         </Link>
         <Link
           href={siteConfig.socials.github}
           target="_blank"
+          aria-label="Github"
         >
           <Github />
         </Link>

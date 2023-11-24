@@ -52,7 +52,10 @@ export default async function Post({ params }: Props) {
 
         <div className="flex items-center gap-2 justify-center">
           <Avatar>
-            <AvatarImage src="/images/profile.png" />
+            <AvatarImage
+              alt="Bewe's profile image"
+              src="/images/profile.webp"
+            />
           </Avatar>
           <Link href={siteConfig.socials.twitter}>Bewe</Link>
         </div>

@@ -8,7 +8,10 @@ export default function Greetings() {
     <div className="space-y-4">
       <div className="flex gap-4 items-center">
         <Avatar className="w-16 h-16">
-          <AvatarImage src="/images/profile.png" />
+          <AvatarImage
+            alt="Bewe's profile image"
+            src="/images/profile.webp"
+          />
         </Avatar>
         <div>
           <p className="text-3xl font-semibold">Hallo,</p>
