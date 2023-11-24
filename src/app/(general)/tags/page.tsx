@@ -23,14 +23,18 @@ export default async function TagsPage() {
     <div>
       <h1 className="text-3xl font-semibold">Tag yang tersedia ⚓</h1>
       <div className="mt-7">
-        {tags.map((tag) => (
-          <Link
-            href={`/tags/${tag}`}
-            key={tag}
-          >
-            <Badge className="mr-2"> {tag}</Badge>
-          </Link>
-        ))}
+        {tags.length > 0 ? (
+          tags.map((tag) => (
+            <Link
+              href={`/tags/${tag}`}
+              key={tag}
+            >
+              <Badge className="mr-2"> {tag}</Badge>
+            </Link>
+          ))
+        ) : (
+          <p className="mt-3">Belum ada tag yang tersedia 😿</p>
+        )}
       </div>
     </div>
   );

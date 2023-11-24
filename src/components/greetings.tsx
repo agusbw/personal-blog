@@ -16,9 +16,9 @@ export default function Greetings() {
         </div>
       </div>
       <p>
-        Di tempat ini aku menuangkan pikiran-pikiran aneh yang datangnya juga
-        secara random. Bukan penulis, jadi ya alakadarnya. Selamat datang dan
-        selamat membaca!💜
+        Ini adalah tempat untuk menuangkan pikiran-pikiran aneh yang datangnya
+        juga secara random. Bukan penulis, jadi ya alakadarnya. Selamat datang
+        dan selamat membaca!💜
       </p>
       <div>
         <Link

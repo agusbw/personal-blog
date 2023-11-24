@@ -2,12 +2,13 @@ import Link from "next/link";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/../keystatic.config";
 import { Post as PostType } from "@/lib/types";
+import { formatDate } from "@/lib/utils";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
 export function Post({ post }: { post: PostType }) {
   return (
-    <div className="mt-4 flex flex-col lg:flex-row gap-3 lg:gap-0 lg:justify-between border p-3 shadow-sm rounded-md lg:items-center">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 lg:justify-between border p-3 shadow-sm rounded-md lg:items-center">
       <div>
         <Link
           href={`/posts/${post.slug}`}
@@ -17,36 +18,35 @@ export function Post({ post }: { post: PostType }) {
         </Link>
       </div>
       <p className="italic text-sm">
-        {new Date(post.entry.createdAt).toLocaleDateString("id-ID", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
+        {formatDate(new Date(post.entry.createdAt))}
       </p>
     </div>
   );
 }
 
 export default async function PostsList() {
-  const posts = (await reader.collections.posts.all()).sort((a, b) => {
-    return (
-      new Date(b.entry.createdAt).getTime() -
-      new Date(a.entry.createdAt).getTime()
-    );
-  });
+  const posts = (await reader.collections.posts.all())
+    .sort((a, b) => {
+      return (
+        new Date(b.entry.createdAt).getTime() -
+        new Date(a.entry.createdAt).getTime()
+      );
+    })
+    .filter((p) => !p.entry.draft);
 
   return (
     <div className="mt-10">
-      <p className="text-2xl font-semibold">Tulisan randomku 🐥</p>
+      <p className="text-2xl font-semibold mb-4">Tulisan randomku 🐥</p>
       <div className="space-y-3">
-        {posts.map(
-          (post) =>
-            !post.entry.draft && (
-              <Post
-                post={post}
-                key={post.slug}
-              />
-            )
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <Post
+              post={post}
+              key={post.slug}
+            />
+          ))
+        ) : (
+          <p className="mt-3">Belum ada tulisan yang dibuat 😿</p>
         )}
       </div>
     </div>

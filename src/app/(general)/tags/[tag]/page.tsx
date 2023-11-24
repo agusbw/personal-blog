@@ -14,6 +14,12 @@ export function generateMetadata({ params }: Props): Metadata {
     title: params.tag,
   };
 }
+
+function getUniqueTags(posts: PostType[]) {
+  const tags = posts.flatMap((post) => post.entry.tags);
+  return Array.from(new Set(tags));
+}
+
 const reader = createReader(process.cwd(), keystaticConfig);
 
 export async function generateStaticParams() {
@@ -21,23 +27,17 @@ export async function generateStaticParams() {
     (post) => !post.entry.draft
   );
 
-  return posts.flatMap((post) => (post.entry.tags ? post.entry.tags : []));
+  return getUniqueTags(posts).map((tag) => ({
+    tag,
+  }));
 }
 
 export default async function TagsPage({ params }: Props) {
   const posts: PostType[] = (await reader.collections.posts.all()).filter(
-    (post) => !post.entry.draft
+    (post) => !post.entry.draft && post.entry.tags.includes(params.tag)
   );
 
-  if (!posts) {
-    notFound();
-  }
-
-  const tags = posts.flatMap((post) =>
-    post.entry.tags ? post.entry.tags : []
-  );
-
-  if (!tags.includes(params.tag)) {
+  if (posts.length <= 0) {
     notFound();
   }
 

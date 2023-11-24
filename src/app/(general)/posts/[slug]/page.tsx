@@ -5,6 +5,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Metadata } from "next";
+import { PostEntry } from "@/lib/types";
+import { Post as PostType } from "@/lib/types";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import siteConfig from "@/lib/site-config";
+import { formatDate } from "@/lib/utils";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -13,14 +18,18 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await reader.collections.posts.read(params.slug);
+  const post: PostEntry | null = await reader.collections.posts.read(
+    params.slug
+  );
   return {
     title: post?.title ? post.title : "Post",
   };
 }
 
 export async function generateStaticParams() {
-  const posts = await reader.collections.posts.all();
+  const posts: PostType[] = (await reader.collections.posts.all()).filter(
+    (post) => !post.entry.draft
+  );
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -28,33 +37,39 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }: Props) {
-  const post = await reader.collections.posts.read(params.slug);
+  const post: PostEntry | null = await reader.collections.posts.read(
+    params.slug
+  );
 
-  if (!post) {
+  if (!post || post.draft) {
     notFound();
   }
 
   return (
     <div className="space-y-7">
-      <div className="text-center w-full">
+      <div className="text-center w-full space-y-2">
         <h1 className="text-4xl font-semibold">{post.title}</h1>
-        <p className="italic text-sm">
-          {post.place +
-            ", " +
-            new Date(post.createdAt)?.toLocaleDateString("id-ID", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+
+        <div className="flex items-center gap-2 justify-center">
+          <Avatar>
+            <AvatarImage src="/images/profile.png" />
+          </Avatar>
+          <Link href={siteConfig.socials.twitter}>Bewe</Link>
+        </div>
+        <p className="text-sm">
+          {post.place + ", " + formatDate(new Date(post.createdAt))}
         </p>
       </div>
-      <div className="max-w-[650px] mx-auto space-y-7">
+      <div className="max-w-[650px] mx-auto">
         <article className="prose dark:prose-invert">
           <DocumentRenderer document={await post.content()} />
         </article>
-        <div>
-          <p className="font-semibold">Tags</p>
-          <div className="mt-1">
+        <div className="space-y-5 mt-7">
+          <p className="text-sm">
+            Terakhir diupdate: {formatDate(new Date(post.updatedAt))}
+          </p>
+          <div>
+            <p className="font-semibold">Tags</p>
             {post.tags.map((tag) => (
               <Link
                 href={`/tags/${tag}`}
@@ -64,13 +79,13 @@ export default async function Post({ params }: Props) {
               </Link>
             ))}
           </div>
+          <Link
+            className="block underline underline-offset-4"
+            href={"/"}
+          >
+            Kembali ke home...
+          </Link>
         </div>
-        <Link
-          className="block underline underline-offset-4"
-          href={"/"}
-        >
-          Kembali ke home...
-        </Link>
       </div>
     </div>
   );
