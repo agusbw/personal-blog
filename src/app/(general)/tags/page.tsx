@@ -22,7 +22,7 @@ export default async function TagsPage() {
   return (
     <div>
       <h1 className="text-3xl font-semibold">Tag yang tersedia ⚓</h1>
-      <div className="mt-7 space-x-2">
+      <div className="mt-7 flex gap-3 flex-wrap">
         {tags.length > 0 ? (
           tags.map((tag) => (
             <Link

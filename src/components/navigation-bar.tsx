@@ -12,7 +12,7 @@ export default function NavigationBar() {
   }
 
   return (
-    <div className="flex justify-between mb-7 ">
+    <div className="flex justify-between items-center mb-7 ">
       <div className="flex gap-5">
         <Link
           href={"/"}

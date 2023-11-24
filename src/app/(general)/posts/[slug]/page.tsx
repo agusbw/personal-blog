@@ -46,8 +46,8 @@ export default async function Post({ params }: Props) {
   }
 
   return (
-    <div>
-      <div className="text-center w-full space-y-2 mb-16">
+    <div className="max-w-[650px] mx-auto">
+      <div className="text-center w-full space-y-2 mb-12">
         <h1 className="text-4xl font-semibold">{post.title}</h1>
         <div className="flex items-center gap-2 justify-center">
           <Avatar>
@@ -67,7 +67,7 @@ export default async function Post({ params }: Props) {
           {post.place + ", " + formatDate(new Date(post.createdAt))}
         </p>
       </div>
-      <div className="max-w-[650px] mx-auto">
+      <div>
         <article className="prose dark:prose-invert prose-attribute">
           <DocumentRenderer document={await post.content()} />
         </article>
