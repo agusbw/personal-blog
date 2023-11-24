@@ -80,6 +80,9 @@ module.exports = {
               fontWeight: "400",
               "border-radius": "0.25rem",
             },
+            a: {
+              textDecoration: "none",
+            },
             "code::before": false,
             "code::after": false,
             "blockquote p:first-of-type::before": false,
