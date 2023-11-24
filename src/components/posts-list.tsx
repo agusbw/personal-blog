@@ -8,19 +8,15 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 export function Post({ post }: { post: PostType }) {
   return (
-    <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 lg:justify-between border p-3 shadow-sm rounded-md lg:items-center">
-      <div className="w-fit">
-        <Link
-          href={`/posts/${post.slug}`}
-          className="hoverable-link line-clamp-1"
-        >
-          {post.entry.title}
-        </Link>
-      </div>
+    <Link
+      href={`/posts/${post.slug}`}
+      className="flex flex-col lg:flex-row gap-4 lg:gap-0 lg:justify-between border p-3 shadow-sm hover:shadow-md hover:scale-[1.015] transition-all duration-300 rounded-md lg:items-center"
+    >
+      {post.entry.title}
       <p className="italic text-sm">
         {formatDate(new Date(post.entry.createdAt))}
       </p>
-    </div>
+    </Link>
   );
 }
 
