@@ -11,6 +11,7 @@ import { formatDate } from "@/lib/utils";
 import { getPostRenderer } from "@/components/keystatic/post-renderer";
 import { getPost, getSortedPosts } from "@/lib/server/keystatic";
 import { ProsePost } from "@/components/prose-post";
+import { CustomLink } from "@/components/custom-link";
 
 type Props = {
   params: { slug: string };
@@ -82,12 +83,7 @@ export default async function Post({ params }: Props) {
               </Link>
             ))}
           </div>
-          <Link
-            href={"/"}
-            className="hoverable-link"
-          >
-            Kembali ke home...
-          </Link>
+          <CustomLink href={"/"}>Kembali ke home...</CustomLink>
         </div>
       </div>
     </div>

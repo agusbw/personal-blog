@@ -23,7 +23,7 @@ export function ProsePost({ className, ...props }: Props) {
         "prose-blockquote:not-italic",
         "prose-blockquote:border-l-neutral-200 dark:prose-blockquote:border-l-neutral-800",
 
-        "prose-figcaption:text-center prose-img:mx-auto prose-img:rounded",
+        "prose-figcaption:text-center prose-img:mx-auto prose-img:rounded-lg",
 
         className
       )}

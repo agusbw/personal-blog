@@ -3,6 +3,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import { Shikiji } from "../shikiji";
 import { cn } from "@/lib/utils";
+import { CustomLink } from "../custom-link";
 
 export function getPostRenderer(): DocumentRendererProps["renderers"] {
   return {
@@ -43,14 +44,7 @@ export function getPostRenderer(): DocumentRendererProps["renderers"] {
     },
     inline: {
       link: (props) => {
-        return (
-          <Link
-            href={props.href}
-            target="_blank"
-          >
-            {props.children}
-          </Link>
-        );
+        return <CustomLink href={props.href}>{props.children}</CustomLink>;
       },
     },
   };
