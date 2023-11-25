@@ -3,8 +3,7 @@ import keystaticConfig from "@/../keystatic.config";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { Post as PostType } from "@/lib/types";
-import { Post } from "@/components/posts-list";
-
+import Post from "@/components/post";
 type Props = {
   params: { tag: string };
 };

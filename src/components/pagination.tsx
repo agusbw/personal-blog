@@ -17,13 +17,17 @@ export default function Pagination({ totalPage }: { totalPage: number }) {
         ? params.delete("page")
         : params.set("page", String(currentPage - 1));
     }
-    router.push(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`, {
+      scroll: false,
+    });
   }
 
   function handlePageUp() {
     if (currentPage < totalPage) {
       params.set("page", String(currentPage + 1));
-      router.push(`${pathname}?${params.toString()}`);
+      router.push(`${pathname}?${params.toString()}`, {
+        scroll: false,
+      });
     }
   }
 

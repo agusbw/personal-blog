@@ -1,40 +1,39 @@
-import Link from "next/link";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/../keystatic.config";
-import { Post as PostType } from "@/lib/types";
-import { formatDate } from "@/lib/utils";
 import Pagination from "./pagination";
+import Sort from "./sort";
+import Post from "./post";
+import { Sort as SortType } from "@/lib/types";
 
 const reader = createReader(process.cwd(), keystaticConfig);
-const itemsPerPage = 8;
-
-export function Post({ post }: { post: PostType }) {
-  return (
-    <Link
-      href={`/posts/${post.slug}`}
-      className="flex flex-col lg:flex-row gap-4 lg:gap-0 lg:justify-between border p-3 shadow-sm hover:shadow-md hover:scale-[1.015] transition-all duration-300 rounded-md lg:items-center"
-    >
-      {post.entry.title}
-      <p className="italic text-sm">
-        {formatDate(new Date(post.entry.createdAt))}
-      </p>
-    </Link>
-  );
-}
+const itemsPerPage = 6;
 
 export default async function PostsList({
   currentPage,
+  sort,
 }: {
   currentPage?: number;
+  sort?: SortType;
 }) {
-  let posts = (await reader.collections.posts.all())
-    .sort((a, b) => {
+  let posts = (await reader.collections.posts.all()).filter(
+    (p) => !p.entry.draft
+  );
+
+  if (sort === "oldest") {
+    posts = posts.sort((a, b) => {
+      return (
+        new Date(a.entry.createdAt).getTime() -
+        new Date(b.entry.createdAt).getTime()
+      );
+    });
+  } else {
+    posts = posts.sort((a, b) => {
       return (
         new Date(b.entry.createdAt).getTime() -
         new Date(a.entry.createdAt).getTime()
       );
-    })
-    .filter((p) => !p.entry.draft);
+    });
+  }
 
   const totalPage = Math.ceil(posts.length / itemsPerPage);
 
@@ -47,7 +46,7 @@ export default async function PostsList({
   return (
     <div className="mt-10 space-y-4">
       <p className="text-2xl font-semibold">Tulisan randomku 🐥</p>
-
+      <Sort />
       <div className="space-y-3">
         {posts.length > 0 ? (
           posts.map((post) => (
