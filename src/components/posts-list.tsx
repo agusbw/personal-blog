@@ -1,12 +1,9 @@
 import Post from "./post";
-import { getSortedPosts } from "@/lib/server/keystatic";
+import { Post as PostType } from "@/lib/types";
 
-export default async function PostsList() {
-  const posts = await getSortedPosts();
-
+export default async function PostsList({ posts }: { posts: PostType[] }) {
   return (
-    <div className="mt-10">
-      <p className="text-2xl font-semibold mb-4">Tulisan randomku 🐥</p>
+    <div className="mt-7">
       <div className="space-y-3">
         {posts.length > 0 ? (
           posts.map((post) => (

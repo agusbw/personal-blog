@@ -2,7 +2,8 @@ import { getSortedPosts } from "@/lib/server/keystatic";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { Post as PostType } from "@/lib/types";
-import Post from "@/components/post";
+import PostsList from "@/components/posts-list";
+
 type Props = {
   params: { tag: string };
 };
@@ -29,8 +30,8 @@ export async function generateStaticParams() {
 }
 
 export default async function TagsPage({ params }: Props) {
-  const posts: PostType[] = (await getSortedPosts()).filter(
-    (post) => !post.entry.draft && post.entry.tags.includes(params.tag)
+  const posts: PostType[] = (await getSortedPosts()).filter((post) =>
+    post.entry.tags.includes(params.tag)
   );
 
   if (posts.length <= 0) {
@@ -40,14 +41,7 @@ export default async function TagsPage({ params }: Props) {
   return (
     <div>
       <h1 className="text-3xl font-semibold">Post pada tag {params.tag} 🔎</h1>
-      <div className="mt-7">
-        {posts.map((post) => (
-          <Post
-            post={post}
-            key={post.slug}
-          />
-        ))}
-      </div>
+      <PostsList posts={posts} />
     </div>
   );
 }
