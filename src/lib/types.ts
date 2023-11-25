@@ -10,8 +10,6 @@ export type PostEntry = {
   updatedAt: string;
 };
 
-export type Sort = "newest" | "oldest";
-
 export type Post = {
   slug: string;
   entry: PostEntry;
