@@ -1,52 +1,35 @@
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/../keystatic.config";
-import Pagination from "./pagination";
-import Sort from "./sort";
-import Post from "./post";
-import { Sort as SortType } from "@/lib/types";
+import { Post as PostType } from "@/lib/types";
+import { formatDate } from "@/lib/utils";
 
 const reader = createReader(process.cwd(), keystaticConfig);
-const itemsPerPage = 6;
 
-export default async function PostsList({
-  currentPage,
-  sort,
-}: {
-  currentPage?: number;
-  sort?: SortType;
-}) {
-  let posts = (await reader.collections.posts.all()).filter(
-    (p) => !p.entry.draft
+export function Post({ post }: { post: PostType }) {
+  return (
+    <Link
+      href={`/posts/${post.slug}`}
+      className="flex flex-col lg:flex-row gap-4 lg:gap-0 lg:justify-between border p-3 shadow-sm hover:shadow-md hover:scale-[1.015] transition-all duration-300 rounded-md lg:items-center"
+    >
+      {post.entry.title}
+      <p className="italic text-sm">
+        {formatDate(new Date(post.entry.createdAt))}
+      </p>
+    </Link>
   );
+}
 
-  if (sort === "oldest") {
-    posts = posts.sort((a, b) => {
-      return (
-        new Date(a.entry.createdAt).getTime() -
-        new Date(b.entry.createdAt).getTime()
-      );
-    });
-  } else {
-    posts = posts.sort((a, b) => {
-      return (
-        new Date(b.entry.createdAt).getTime() -
-        new Date(a.entry.createdAt).getTime()
-      );
-    });
-  }
-
-  const totalPage = Math.ceil(posts.length / itemsPerPage);
-
-  if (currentPage) {
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    posts = posts.slice(start, end);
-  }
+export default async function PostsList() {
+  const posts = (await reader.collections.posts.all()).sort((a, b) => {
+    return (
+      new Date(b.entry.createdAt).getTime() -
+      new Date(a.entry.createdAt).getTime()
+    );
+  });
 
   return (
-    <div className="mt-10 space-y-4">
-      <p className="text-2xl font-semibold">Tulisan randomku 🐥</p>
-      <Sort />
+    <div className="mt-10">
+      <p className="text-2xl font-semibold mb-4">Tulisan randomku 🐥</p>
       <div className="space-y-3">
         {posts.length > 0 ? (
           posts.map((post) => (
@@ -59,7 +42,6 @@ export default async function PostsList({
           <p className="mt-3">Belum ada tulisan yang dibuat 😿</p>
         )}
       </div>
-      <Pagination totalPage={totalPage} />
     </div>
   );
 }
