@@ -40,7 +40,9 @@ export default async function TagsPage({ params }: Props) {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold">Post pada tag {params.tag} 🔎</h1>
+      <h1 className="text-3xl font-semibold mb-7">
+        Post pada tag {params.tag} 🔎
+      </h1>
       <PostsList posts={posts} />
     </div>
   );
