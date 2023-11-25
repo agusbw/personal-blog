@@ -8,7 +8,7 @@ export const getReader = cache(() =>
   createReader(process.cwd(), keystaticConfig)
 );
 
-export const getPost = cache(getReader().collections.posts.readOrThrow);
+export const getPost = cache(getReader().collections.posts.read);
 export const getSortedPosts = cache(async () => {
   const reader = getReader();
   const posts = (await reader.collections.posts.all()).filter(
@@ -23,3 +23,5 @@ export const getSortedPosts = cache(async () => {
   });
   return sortedPosts;
 });
+
+export const getHomePage = cache(getReader().singletons.home.read);

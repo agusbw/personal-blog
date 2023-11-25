@@ -1,0 +1,18 @@
+import { singleton, fields } from "@keystatic/core";
+
+const homeSchema = singleton({
+  label: "Home Page",
+  schema: {
+    description: fields.text({
+      label: "Site Description",
+      multiline: true,
+      validation: {
+        length: {
+          min: 1,
+        },
+      },
+    }),
+  },
+});
+
+export default homeSchema;

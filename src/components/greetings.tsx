@@ -2,8 +2,12 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import siteConfig from "@/lib/site-config";
 import { buttonVariants } from "@/components/ui/button";
+import { getHomePage } from "@/lib/server/keystatic";
 
-export default function Greetings() {
+export default async function Greetings() {
+  const data = await getHomePage();
+  console.log(data);
+
   return (
     <div className="space-y-4">
       <div className="flex gap-4 items-center">
@@ -15,14 +19,10 @@ export default function Greetings() {
         </Avatar>
         <div>
           <p className="text-3xl font-semibold">Hallo,</p>
-          <p className="text-xl font-semibold">Perkenalkan aku Bewee👋🏻</p>
+          <p className="text-xl font-semibold">Perkenalkan saya Bewee👋🏻</p>
         </div>
       </div>
-      <p>
-        Ini adalah tempat untuk menuangkan pikiran-pikiran aneh yang datangnya
-        juga secara random. Bukan penulis, jadi ya alakadarnya. Selamat datang
-        dan selamat membaca!💜
-      </p>
+      <p>{data?.description ? data.description : ""}</p>
       <div>
         <Link
           href={siteConfig.personalWebsite}
