@@ -6,7 +6,6 @@ import { getHomePage } from "@/lib/server/keystatic";
 
 export default async function Greetings() {
   const data = await getHomePage();
-  console.log(data);
 
   return (
     <div className="space-y-4">
