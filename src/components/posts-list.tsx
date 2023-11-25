@@ -3,8 +3,10 @@ import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/../keystatic.config";
 import { Post as PostType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
+import Pagination from "./pagination";
 
 const reader = createReader(process.cwd(), keystaticConfig);
+const itemsPerPage = 8;
 
 export function Post({ post }: { post: PostType }) {
   return (
@@ -20,8 +22,12 @@ export function Post({ post }: { post: PostType }) {
   );
 }
 
-export default async function PostsList() {
-  const posts = (await reader.collections.posts.all())
+export default async function PostsList({
+  currentPage,
+}: {
+  currentPage?: number;
+}) {
+  let posts = (await reader.collections.posts.all())
     .sort((a, b) => {
       return (
         new Date(b.entry.createdAt).getTime() -
@@ -30,9 +36,18 @@ export default async function PostsList() {
     })
     .filter((p) => !p.entry.draft);
 
+  const totalPage = Math.ceil(posts.length / itemsPerPage);
+
+  if (currentPage) {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    posts = posts.slice(start, end);
+  }
+
   return (
-    <div className="mt-10">
-      <p className="text-2xl font-semibold mb-4">Tulisan randomku 🐥</p>
+    <div className="mt-10 space-y-4">
+      <p className="text-2xl font-semibold">Tulisan randomku 🐥</p>
+
       <div className="space-y-3">
         {posts.length > 0 ? (
           posts.map((post) => (
@@ -45,6 +60,7 @@ export default async function PostsList() {
           <p className="mt-3">Belum ada tulisan yang dibuat 😿</p>
         )}
       </div>
+      <Pagination totalPage={totalPage} />
     </div>
   );
 }
