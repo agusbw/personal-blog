@@ -2,6 +2,7 @@ import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "@/../keystatic.config";
 import { Post as PostType } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
+import Link from "next/link";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
