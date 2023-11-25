@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function TagsPage() {
   const posts: Post[] = await getSortedPosts();
 
-  const tags = posts.flatMap((post) => post.entry.tags);
+  const tags = Array.from(new Set(posts.flatMap((post) => post.entry.tags)));
 
   return (
     <div>
