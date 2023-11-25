@@ -1,21 +1,16 @@
-import { createReader } from "@keystatic/core/reader";
-import keystaticConfig from "@/../keystatic.config";
 import { Metadata } from "next";
 import { Post } from "@/lib/types";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { getSortedPosts } from "@/lib/server/keystatic";
 
 export const metadata: Metadata = {
   title: "Tags",
   description: "Tags on Bewe's personal blog",
 };
 
-const reader = createReader(process.cwd(), keystaticConfig);
-
 export default async function TagsPage() {
-  const posts: Post[] = (await reader.collections.posts.all()).filter(
-    (post) => !post.entry.draft
-  );
+  const posts: Post[] = await getSortedPosts();
 
   const tags = posts.flatMap((post) => post.entry.tags);
 

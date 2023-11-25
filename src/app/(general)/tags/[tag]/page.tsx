@@ -1,5 +1,4 @@
-import { createReader } from "@keystatic/core/reader";
-import keystaticConfig from "@/../keystatic.config";
+import { getSortedPosts } from "@/lib/server/keystatic";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { Post as PostType } from "@/lib/types";
@@ -19,10 +18,8 @@ function getUniqueTags(posts: PostType[]) {
   return Array.from(new Set(tags));
 }
 
-const reader = createReader(process.cwd(), keystaticConfig);
-
 export async function generateStaticParams() {
-  const posts: PostType[] = (await reader.collections.posts.all()).filter(
+  const posts: PostType[] = (await getSortedPosts()).filter(
     (post) => !post.entry.draft
   );
 
@@ -32,7 +29,7 @@ export async function generateStaticParams() {
 }
 
 export default async function TagsPage({ params }: Props) {
-  const posts: PostType[] = (await reader.collections.posts.all()).filter(
+  const posts: PostType[] = (await getSortedPosts()).filter(
     (post) => !post.entry.draft && post.entry.tags.includes(params.tag)
   );
 

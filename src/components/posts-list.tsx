@@ -1,16 +1,8 @@
-import { createReader } from "@keystatic/core/reader";
-import keystaticConfig from "@/../keystatic.config";
 import Post from "./post";
-
-const reader = createReader(process.cwd(), keystaticConfig);
+import { getSortedPosts } from "@/lib/server/keystatic";
 
 export default async function PostsList() {
-  const posts = (await reader.collections.posts.all()).sort((a, b) => {
-    return (
-      new Date(b.entry.createdAt).getTime() -
-      new Date(a.entry.createdAt).getTime()
-    );
-  });
+  const posts = await getSortedPosts();
 
   return (
     <div className="mt-10">

@@ -1,6 +1,4 @@
 import { DocumentRenderer } from "@keystatic/core/renderer";
-import { createReader } from "@keystatic/core/reader";
-import keystaticConfig from "@/../keystatic.config";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -10,26 +8,23 @@ import { Post as PostType } from "@/lib/types";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import siteConfig from "@/lib/site-config";
 import { formatDate } from "@/lib/utils";
-
-const reader = createReader(process.cwd(), keystaticConfig);
+import { getPostRenderer } from "@/components/keystatic/post-renderer";
+import { getPost, getSortedPosts } from "@/lib/server/keystatic";
+import { ProsePost } from "@/components/prose-post";
 
 type Props = {
   params: { slug: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post: PostEntry | null = await reader.collections.posts.read(
-    params.slug
-  );
+  const post: PostEntry | null = await getPost(params.slug);
   return {
     title: post?.title ? post.title : "Post",
   };
 }
 
 export async function generateStaticParams() {
-  const posts: PostType[] = (await reader.collections.posts.all()).filter(
-    (post) => !post.entry.draft
-  );
+  const posts: PostType[] = await getSortedPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -37,11 +32,9 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }: Props) {
-  const post: PostEntry | null = await reader.collections.posts.read(
-    params.slug
-  );
-
-  if (!post || post.draft) {
+  const post = await getPost(params.slug);
+  const renderer = getPostRenderer();
+  if (!post) {
     notFound();
   }
 
@@ -68,9 +61,12 @@ export default async function Post({ params }: Props) {
         </p>
       </div>
       <div>
-        <article className="prose dark:prose-invert prose-attribute">
-          <DocumentRenderer document={await post.content()} />
-        </article>
+        <ProsePost>
+          <DocumentRenderer
+            document={await post.content()}
+            renderers={renderer}
+          />
+        </ProsePost>
         <div className="space-y-5 mt-7">
           <p className="text-sm">
             Terakhir diupdate: {formatDate(new Date(post.updatedAt))}
