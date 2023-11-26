@@ -1,5 +1,6 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { getHomePage } from "@/lib/server/keystatic";
+import profileImage from "@/../../public/images/profile.webp";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export default async function Greetings() {
@@ -8,12 +9,14 @@ export default async function Greetings() {
   return (
     <div className="space-y-4">
       <div className="flex gap-4 items-center">
-        <Avatar className="w-16 h-16">
-          <AvatarImage
-            alt="Bewe's profile image"
-            src="/images/profile.webp"
-          />
-        </Avatar>
+        <Image
+          src={profileImage}
+          alt="profile"
+          className="rounded-full"
+          placeholder="blur"
+          width={100}
+          height={100}
+        />
         <div>
           <p
             className={cn(
@@ -31,7 +34,6 @@ export default async function Greetings() {
         </div>
       </div>
       <p>{data?.description ? data.description : ""}</p>
-  
     </div>
   );
 }
