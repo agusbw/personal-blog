@@ -1,9 +1,5 @@
+import SentMessageForm from "@/components/sent-message-form";
 import { getAllMessages } from "@/lib/server/data";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { SubmitButton } from "@/components/submit-button";
-import { sentMessage } from "@/lib/server/actions";
 import { Message } from "@/lib/types";
 import { Metadata } from "next";
 
@@ -52,46 +48,7 @@ export default async function MessagesPage() {
         Data yang ditampilkan hanya nama dan pesan
       </p>
       <div className="mt-4 max-w-sm rounded-md border p-5">
-        <form
-          action={sentMessage}
-          className="space-y-4"
-        >
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="name">
-              Nama <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              type="text"
-              id="name"
-              placeholder="Nama anda"
-              name="name"
-              required
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="contact">Kontak</Label>
-            <Input
-              type="text"
-              id="contact"
-              name="contact"
-              placeholder="Instagram: @agus_bw"
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="message">
-              Pesan <span className="text-red-500">*</span>
-            </Label>
-            <Textarea
-              placeholder="Tulis pesan anda disini"
-              id="message"
-              name="message"
-              required
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <SubmitButton type="submit">Kirim</SubmitButton>
-          </div>
-        </form>
+        <SentMessageForm />
       </div>
       <div className="mt-7 space-y-4">
         {messages.map((message) => (
