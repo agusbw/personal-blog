@@ -7,6 +7,8 @@ import { sentMessage } from "@/lib/server/actions";
 import { Message } from "@/lib/types";
 import { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Kesan & Pesan",
   description: "Kesan & pesan dari para pengunjung blog",
