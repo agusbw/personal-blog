@@ -28,7 +28,7 @@ export function SubmitButton({
   return (
     <Button
       type="submit"
-      aria-disabled={pending}
+      disabled={pending}
       variant={variant}
       size={size}
       {...props}
