@@ -1,7 +1,7 @@
 // keystatic.config.ts
 import { config } from "@keystatic/core";
-import postSchema from "@/lib/schema/posts";
-import homeSchema from "@/lib/schema/home";
+import postSchema from "@/lib/schema/keystatic/posts";
+import homeSchema from "@/lib/schema/keystatic/home";
 
 export default config({
   storage: {
