@@ -21,6 +21,12 @@ export default function NavigationBar() {
           Home
         </Link>
         <Link
+          href={"/footprints"}
+          className={isActive("/footprints") ? "font-semibold" : ""}
+        >
+          Footprints
+        </Link>
+        <Link
           href={"/tags"}
           className={isActive("/tags") ? "font-semibold" : ""}
         >
