@@ -41,16 +41,21 @@ export default async function Footprint() {
     <div>
       <h1 className="text-3xl font-semibold">Footprints 👣</h1>
       <p className="text-muted-foreground text-sm mt-1">
-        Beberapa foto tempat dan momen yang memiliki kesan tersendiri bagi saya.
+        Beberapa foto dari tempat dan momen yang memiliki kesan tersendiri bagi
+        saya.
       </p>
-      <div className="columns-1 sm:columns-2 lg:columns-3 mt-7">
-        {footprints.map((footprint) => (
-          <FootprintCard
-            key={footprint.slug}
-            footprint={footprint.entry}
-          />
-        ))}
-      </div>
+      {footprints.length > 0 ? (
+        <div className="columns-1 sm:columns-2 lg:columns-3 mt-7">
+          {footprints.map((footprint) => (
+            <FootprintCard
+              key={footprint.slug}
+              footprint={footprint.entry}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="mt-7">Belum ada footprint yang ditinggalkan 😿</p>
+      )}
     </div>
   );
 }
