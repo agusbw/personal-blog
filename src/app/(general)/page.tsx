@@ -2,12 +2,37 @@ import Greetings from "@/components/greetings";
 import PostsList from "@/components/posts-list";
 import { getSortedPosts } from "@/lib/server/keystatic";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import siteConfig from "@/lib/site-config";
+import { MessageSquare } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
 export default async function HomePage() {
   const posts = await getSortedPosts();
   return (
     <div>
       <Greetings />
+      <div className="mt-4 space-x-3 flex items-center">
+        <Link
+          href={siteConfig.personalWebsite}
+          className={buttonVariants({
+            variant: "default",
+            size: "sm",
+          })}
+          target="_blank"
+        >
+          Personal Site
+        </Link>
+        <Link
+          href="/messages"
+          className={buttonVariants({
+            variant: "secondary",
+            size: "sm",
+          })}
+        >
+          <MessageSquare className="w-4 h-4 mr-2" /> Kirim Pesan
+        </Link>
+      </div>
       <div className="mt-7">
         <p
           className={cn(

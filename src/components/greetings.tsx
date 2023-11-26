@@ -1,7 +1,4 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import Link from "next/link";
-import siteConfig from "@/lib/site-config";
-import { buttonVariants } from "@/components/ui/button";
 import { getHomePage } from "@/lib/server/keystatic";
 import { cn } from "@/lib/utils";
 
@@ -34,18 +31,7 @@ export default async function Greetings() {
         </div>
       </div>
       <p>{data?.description ? data.description : ""}</p>
-      <div>
-        <Link
-          href={siteConfig.personalWebsite}
-          className={buttonVariants({
-            variant: "default",
-            size: "sm",
-          })}
-          target="_blank"
-        >
-          Personal Site
-        </Link>
-      </div>
+  
     </div>
   );
 }
