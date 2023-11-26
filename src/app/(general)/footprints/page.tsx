@@ -2,13 +2,20 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { getSortedFootprints } from "@/lib/server/keystatic";
 import { FootprintEntry } from "@/lib/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Footprints",
+  description:
+    "Halaman footprints berisikan foto dari tempat dan momen yang memiliki kesan tersendiri bagi saya.",
+};
 
 function FootprintCard({ footprint }: { footprint: FootprintEntry }) {
   return (
     <div
       className={cn(
         "relative p-4 group break-inside-avoid",
-        "before:block before:absolute before:w-[100%] before:inset-0 before:-z-10 before:h-[100%]  before:rounded-lg before:transition-all before:duration-300 before:scale-95",
+        "before:block before:absolute before:w-[100%] before:inset-0 before:-z-10 before:h-[100%] before:rounded-lg before:transition-all before:duration-300 before:scale-95",
         "hover:before:bg-muted-foreground/10 hover:before:scale-100"
       )}
     >
@@ -34,7 +41,7 @@ function FootprintCard({ footprint }: { footprint: FootprintEntry }) {
   );
 }
 
-export default async function Footprint() {
+export default async function FootprintPage() {
   const footprints = await getSortedFootprints();
 
   return (

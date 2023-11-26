@@ -14,9 +14,9 @@ export async function sentMessage(formData: FormData) {
   //save to database
   await prisma.messages.create({
     data: {
-      sender_name: parsed.sender_name.toString(),
-      sender_contact: parsed.sender_contact?.toString(),
-      message: parsed.message.toString(),
+      sender_name: parsed.sender_name,
+      sender_contact: parsed.sender_contact,
+      message: parsed.message,
     },
   });
 
