@@ -19,7 +19,9 @@ function MessageCard({ message }: { message: MessageWithoutContact }) {
     <div className="rounded-md border p-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-semibold">{message.sender_name}</h1>
+          <h1 className="text-lg font-semibold capitalize">
+            {message.sender_name}
+          </h1>
         </div>
         <div>
           <p className="text-sm text-muted-foreground">
