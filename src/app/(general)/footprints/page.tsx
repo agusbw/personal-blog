@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Footprints",
   description:
-    "Halaman footprints berisikan foto dari tempat dan momen yang memiliki kesan tersendiri bagi saya.",
+    "Halaman footprints berisikan foto dari tempat dan momen yang memiliki kesan tersendiri bagi saya."
 };
 
 function FootprintCard({ footprint }: { footprint: FootprintEntry }) {
@@ -34,7 +34,7 @@ function FootprintCard({ footprint }: { footprint: FootprintEntry }) {
         {new Date(footprint.createdAt).toLocaleDateString("id-ID", {
           year: "numeric",
           month: "long",
-          day: "numeric",
+          day: "numeric"
         })}
       </p>
     </div>
@@ -48,8 +48,8 @@ export default async function FootprintPage() {
     <div>
       <h1 className="text-3xl font-semibold">Footprints 👣</h1>
       <p className="text-muted-foreground text-sm mt-1">
-        Beberapa foto dari tempat dan momen yang memiliki kesan tersendiri bagi
-        saya.
+        Tempat saya menyimpan dan membagikan beberapa foto dari tempat dan
+        momen.
       </p>
       {footprints.length > 0 ? (
         <div className="columns-1 sm:columns-2 lg:columns-3 mt-7">
