@@ -8,7 +8,7 @@ export default config({
   storage: {
     kind: "github",
     repo: {
-      name: "blog.agusbw.live",
+      name: "personal-blog",
       owner: "agusbw",
     },
   },
