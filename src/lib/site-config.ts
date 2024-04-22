@@ -1,5 +1,5 @@
 const siteConfig = {
-  personalWebsite: "https://agusbw.live",
+  personalWebsite: "https://agusbw.vercel.app",
   socials: {
     twitter: "https://twitter.com/agusbw_",
     github: "https://github.com/",
