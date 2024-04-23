@@ -1,6 +1,6 @@
 import { getSortedPosts } from "../lib/server/keystatic";
 
-const URL = process.env.URL || "https://blog.agusbw.live";
+const URL = process.env.URL || "https://bewe-blog.vercel.app";
 
 export default async function sitemap() {
   const posts = await getSortedPosts();
