@@ -35,9 +35,7 @@ export async function generateStaticParams() {
 export default async function Post({ params }: Props) {
   const post = await getPost(params.slug);
   const renderer = getPostRenderer();
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
 
   return (
     <div className="max-w-[650px] mx-auto">

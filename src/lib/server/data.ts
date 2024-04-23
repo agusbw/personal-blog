@@ -2,8 +2,8 @@ import "server-only";
 
 import prisma from "@/../../prisma/db";
 
-export const getAllMessages = async () => {
-  const posts = await prisma.messages.findMany({
+export const getAllMessages = async () =>
+  await prisma.messages.findMany({
     orderBy: {
       created_at: "desc",
     },
@@ -14,5 +14,3 @@ export const getAllMessages = async () => {
       id: true,
     },
   });
-  return posts;
-};

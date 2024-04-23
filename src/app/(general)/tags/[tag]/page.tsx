@@ -14,10 +14,8 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-function getUniqueTags(posts: PostType[]) {
-  const tags = posts.flatMap((post) => post.entry.tags);
-  return Array.from(new Set(tags));
-}
+const getUniqueTags = (posts: PostType[]) =>
+  Array.from(new Set(posts.flatMap((post) => post.entry.tags)));
 
 export async function generateStaticParams() {
   const posts: PostType[] = (await getSortedPosts()).filter(
@@ -34,9 +32,7 @@ export default async function TagsPage({ params }: Props) {
     post.entry.tags.includes(params.tag)
   );
 
-  if (posts.length <= 0) {
-    notFound();
-  }
+  if (posts.length <= 0) notFound();
 
   return (
     <div>

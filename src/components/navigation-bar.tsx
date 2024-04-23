@@ -6,10 +6,8 @@ import { usePathname } from "next/navigation";
 
 export default function NavigationBar() {
   const pathname = usePathname();
-  function isActive(href: string): boolean {
-    const pathArr = pathname.split("/");
-    return pathArr[1] === href.split("/")[1];
-  }
+  const isActive = (href: string) =>
+    pathname.split("/")[1] === href.split("/")[1];
 
   return (
     <div className="flex justify-between items-center mb-7 ">
