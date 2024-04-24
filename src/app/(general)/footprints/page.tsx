@@ -13,7 +13,7 @@ export default async function FootprintPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold">Footprints 👣</h1>
+      <h1 className="text-3xl font-medium font-schoolbell">Footprints 👣</h1>
       <p className="text-muted-foreground text-sm mt-1">
         Tempat saya menyimpan dan membagikan beberapa foto dari tempat dan
         momen.

@@ -36,7 +36,7 @@ export default async function HomePage() {
       <div className="mt-7">
         <p
           className={cn(
-            "text-2xl font-semibold dark:text-background",
+            "text-2xl font-semibold dark:text-background font-schoolbell",
             "inline-block relative mb-5",
             "before:block before:rotate-1 before:w-[108%] before:-left-2 before:-top-1 before:-z-10 before:h-[115%] before:bg-yellow-200  before:absolute before:rounded-sm"
           )}

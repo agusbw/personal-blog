@@ -86,6 +86,10 @@ module.exports = {
         wiggle: "wiggle 1s infinite",
         wave: "wave 1s infinite",
       },
+      fontFamily: {
+        montserrat: ["var(--font-montserrat)"],
+        schoolbell: ["var(--font-schoolbell)"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

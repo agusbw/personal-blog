@@ -1,10 +1,9 @@
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
+import { montserrat, schoolbell } from "@/lib/fonts";
 
-const inter = Montserrat({ subsets: ["latin"] });
 export default function RootLayout({
   children,
 }: {
@@ -18,7 +17,9 @@ export default function RootLayout({
         src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
         data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
       />
-      <body className={cn(inter.className, "antialiased")}>
+      <body
+        className={cn(montserrat.variable, schoolbell.variable, "antialiased")}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

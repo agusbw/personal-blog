@@ -20,14 +20,14 @@ export default async function Greetings() {
         <div>
           <p
             className={cn(
-              "text-3xl font-semibold ",
+              "text-3xl font-semibold font-schoolbell",
               "inline-block relative",
-              "before:block before:-rotate-2 before:rounded-sm before:w-[120%] before:-left-2 before:-z-10 before:h-full before:bg-purple-500 before:absolute"
+              "before:block before:-rotate-1 before:rounded-sm before:w-[120%] before:-left-2 before:-z-10 before:h-[110%] before:-top-1 before:bg-purple-500 before:absolute"
             )}
           >
             Hallo,
           </p>
-          <p className="text-xl font-semibold">
+          <p className="text-2xl font-medium font-schoolbell">
             Perkenalkan saya Bewee{" "}
             <span className="animate-wave text-3xl inline-block">👋🏻</span>
           </p>

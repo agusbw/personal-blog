@@ -40,7 +40,7 @@ export default async function Post({ params }: Props) {
   return (
     <div className="max-w-[650px] mx-auto">
       <div className="text-center w-full space-y-2 mb-12">
-        <h1 className="text-4xl font-semibold">{post.title}</h1>
+        <h1 className="text-4xl font-medium font-schoolbell">{post.title}</h1>
         <div className="flex items-center gap-2 justify-center">
           <Avatar>
             <AvatarImage

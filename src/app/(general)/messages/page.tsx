@@ -15,7 +15,9 @@ export default async function MessagesPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold">Kirimkan kesan & pesan anda!</h1>
+      <h1 className="text-3xl font-medium font-schoolbell">
+        Kirimkan kesan & pesan anda!
+      </h1>
       <p className="text-muted-foreground text-sm mt-1">
         Data yang ditampilkan hanya nama dan pesan
       </p>
