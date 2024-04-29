@@ -1,7 +1,7 @@
 import SentMessageForm from "@/components/sent-message-form";
 import { getAllMessages } from "@/lib/server/data";
 import MessageCard, { MessageContainer } from "@/components/message-card";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 

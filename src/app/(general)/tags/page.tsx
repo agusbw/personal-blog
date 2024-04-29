@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { Post } from "@/lib/types";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +16,9 @@ export default async function TagsPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-medium font-schoolbell">Tag yang tersedia ⚓</h1>
+      <h1 className="text-3xl font-medium font-schoolbell">
+        Tag yang tersedia ⚓
+      </h1>
       <div className="mt-7 flex gap-3 flex-wrap">
         {tags.length > 0 ? (
           tags.map((tag) => (
