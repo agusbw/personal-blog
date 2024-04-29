@@ -12,6 +12,7 @@ import { getPostRenderer } from "@/components/keystatic/post-renderer";
 import { getPost, getSortedPosts } from "@/lib/server/keystatic";
 import { ProsePost } from "@/components/prose-post";
 import { CustomLink } from "@/components/custom-link";
+import ScrollProgress from "@/components/scroll-progress";
 
 type Props = {
   params: { slug: string };
@@ -39,6 +40,7 @@ export default async function Post({ params }: Props) {
 
   return (
     <div className="max-w-[650px] mx-auto">
+      <ScrollProgress />
       <div className="text-center w-full space-y-2 mb-12">
         <h1 className="text-4xl font-medium font-schoolbell">{post.title}</h1>
         <div className="flex items-center gap-2 justify-center">
