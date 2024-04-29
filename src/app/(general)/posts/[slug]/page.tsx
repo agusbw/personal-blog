@@ -2,17 +2,18 @@ import { DocumentRenderer } from "@keystatic/core/renderer";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { PostEntry } from "@/lib/types";
 import { Post as PostType } from "@/lib/types";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import siteConfig from "@/lib/site-config";
 import { formatDate } from "@/lib/utils";
 import { getPostRenderer } from "@/components/keystatic/post-renderer";
 import { getPost, getSortedPosts } from "@/lib/server/keystatic";
+import Image from "next/image";
 import { ProsePost } from "@/components/prose-post";
 import { CustomLink } from "@/components/custom-link";
 import ScrollProgress from "@/components/scroll-progress";
+import profileImage from "@/../../public/images/profile.webp";
 
 type Props = {
   params: { slug: string };
@@ -44,12 +45,14 @@ export default async function Post({ params }: Props) {
       <div className="text-center w-full space-y-2 mb-12">
         <h1 className="text-4xl font-medium font-schoolbell">{post.title}</h1>
         <div className="flex items-center gap-2 justify-center">
-          <Avatar>
-            <AvatarImage
-              alt="Bewe's profile image"
-              src="/images/profile.webp"
-            />
-          </Avatar>
+          <Image
+            src={profileImage}
+            width={40}
+            height={40}
+            className="rounded-full"
+            alt="Bewe's profile image"
+            placeholder="blur"
+          />
           <Link
             className="hoverable-link"
             href={siteConfig.socials.twitter}
