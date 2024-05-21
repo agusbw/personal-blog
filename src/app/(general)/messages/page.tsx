@@ -7,7 +7,21 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Kesan & Pesan",
-  description: "Kesan & pesan dari para pengunjung blog",
+  description: "Kesan & pesan dari para pengunjung",
+  openGraph: {
+    type: "article",
+    url: `https://bewe-blog.vercel.app/messages`,
+    description: "Kesan & pesan dari para pengunjung",
+    title: "Kesan & Pesan",
+    images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/messages`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@agusbw_",
+    description: "Kesan & pesan dari para pengunjung",
+    title: "Kesan & Pesan",
+    images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/messages`,
+  },
 };
 
 export default async function MessagesPage() {

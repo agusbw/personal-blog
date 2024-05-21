@@ -5,8 +5,22 @@ import { Badge } from "@/components/ui/badge";
 import { getSortedPosts } from "@/lib/server/keystatic";
 
 export const metadata: Metadata = {
-  title: "Tags",
-  description: "Tags on Bewe's personal blog",
+  title: "Tag",
+  description: "Tagar yang tersedia atau pernah dibahas",
+  openGraph: {
+    type: "article",
+    url: `https://bewe-blog.vercel.app/tags`,
+    description: "Tagar yang tersedia atau pernah dibahas",
+    title: "Tag",
+    images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/tags`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@agusbw_",
+    description: "Tagar yang tersedia atau pernah dibahas",
+    title: "Tag",
+    images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/tags`,
+  },
 };
 
 export default async function TagsPage() {

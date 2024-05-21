@@ -7,7 +7,27 @@ export const metadata: Metadata = {
     template: `%s - Bewe`,
     default: "Home - Bewe",
   },
-  description: "Bewe's personal blog",
+  description: "Tulisan-tulisan random yang terkadang serius.",
+  openGraph: {
+    title: {
+      template: `%s - Bewe`,
+      default: "Home - Bewe",
+    },
+    type: "article",
+    images: "https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app",
+    description: "Tulisan-tulisan random yang terkadang serius.",
+    url: "https://bewe-blog.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@agusbw_",
+    description: "Tulisan-tulisan random yang terkadang serius.",
+    title: {
+      template: `%s - Bewe`,
+      default: "Home - Bewe",
+    },
+    images: "https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app",
+  },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

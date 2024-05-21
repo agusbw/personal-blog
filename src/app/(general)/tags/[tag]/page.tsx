@@ -11,6 +11,21 @@ type Props = {
 export function generateMetadata({ params }: Props): Metadata {
   return {
     title: params.tag,
+    description: `Tulisan dengan tagar ${params.tag}`,
+    openGraph: {
+      type: "article",
+      url: `https://bewe-blog.vercel.app/tags/${params.tag}`,
+      description: `Tulisan dengan tagar ${params.tag}`,
+      title: params.tag,
+      images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/tags/${params.tag}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@agusbw_",
+      description: `Tulisan dengan tagar ${params.tag}`,
+      title: params.tag,
+      images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/tags/${params.tag}`,
+    },
   };
 }
 

@@ -23,6 +23,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post: PostEntry | null = await getPost(params.slug);
   return {
     title: post?.title ? post.title : "Post",
+    description: "Tulisan-tulisan random yang terkadang serius.",
+    openGraph: {
+      type: "article",
+      url: `https://bewe-blog.vercel.app/posts/${params.slug}`,
+      description: "Tulisan-tulisan random yang terkadang serius.",
+      title: post?.title ? post.title : "Post",
+      images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/posts/${params.slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@agusbw_",
+      description: "Tulisan-tulisan random yang terkadang serius.",
+      title: post?.title ? post.title : "Post",
+      images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/posts/${params.slug}`,
+    },
   };
 }
 

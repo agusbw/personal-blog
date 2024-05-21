@@ -5,7 +5,23 @@ import FootprintCard from "@/components/footprint-card";
 export const metadata: Metadata = {
   title: "Footprints",
   description:
-    "Halaman footprints berisikan foto dari tempat dan momen yang memiliki kesan tersendiri bagi saya.",
+    "Foto dari tempat dan momen yang memiliki kesan tersendiri bagi saya.",
+  openGraph: {
+    type: "article",
+    url: `https://bewe-blog.vercel.app/footprints`,
+    description:
+      "Foto dari tempat dan momen yang memiliki kesan tersendiri bagi saya.",
+    title: "Footprints",
+    images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/footprints`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@agusbw_",
+    description:
+      "Foto dari tempat dan momen yang memiliki kesan tersendiri bagi saya",
+    title: "Footprints",
+    images: `https://snapy.yenkzera.tech/get?url=https://bewe-blog.vercel.app/footprints`,
+  },
 };
 
 export default async function FootprintPage() {
